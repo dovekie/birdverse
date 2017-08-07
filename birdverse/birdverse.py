@@ -9,7 +9,7 @@ app = Flask(__name__)
 def default(bird=None):
     if bird:
         return get_a_bird(bird)
-    return 'Welcome!'
+    return 'Welcome to Birdverse'
 
 @app.route('/populate')
 def populate_bird_data():
