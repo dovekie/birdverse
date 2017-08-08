@@ -1,10 +1,15 @@
 import os
 from flask import (Flask, request, session, g, redirect, url_for, abort,
     render_template, flash)
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 print 'Running with {}'.format(os.environ['APP_SETTINGS'])
+
+from models import Bird
 
 @app.route('/')
 @app.route('/<bird>')
