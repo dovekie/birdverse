@@ -1,4 +1,5 @@
-# birdverse
+# birdverse: a universe of birds!
+
 An API for bird taxonomic data
 
 TODO:

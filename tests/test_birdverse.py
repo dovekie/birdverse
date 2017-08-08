@@ -36,7 +36,8 @@ class BirdverseTest(unittest.TestCase):
 
     def test_home_get_a_bird(self):
         # sends HTTP GET request to root with a bird, get that bird back
-        result = self.app.get('/tinamou') 
+        bird = 'tinamou'
+        result = self.app.get('/{}'.format(bird)) 
 
         # assert the data of the response
-        self.assertEqual(result.data, 'getting a bird: tinamou')
+        self.assertEqual(result.data, 'getting a bird: {}'.format(bird))
