@@ -7,9 +7,10 @@ app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-print 'Running with {}'.format(os.environ['APP_SETTINGS'])
 
 from models import Bird
+
+print 'Running with {}'.format(os.environ['APP_SETTINGS'])
 
 @app.route('/')
 @app.route('/<bird>')
