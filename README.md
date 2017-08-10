@@ -3,7 +3,9 @@
 An API for bird taxonomic data
 
 TODO:
-Access raw bird data
-Process raw bird data
-Store bird data in database
-Make bird data available via API
+
+- Clean up imports of DB methods to centralize DB code
+
+- Sanitize DB inputs because unicode breaks things
+
+- Make bird data available via API
