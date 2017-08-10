@@ -2,6 +2,7 @@ import os
 from flask import (Flask, request, session, g, redirect, url_for, abort,
     render_template, flash)
 from flask_sqlalchemy import SQLAlchemy
+import import_birds
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
@@ -21,7 +22,12 @@ def default(bird=None):
 
 @app.route('/populate')
 def populate_bird_data():
-    return 'This route will fetch fresh bird data from outside source'
+    stale_birds = db.session.query(Bird).delete()
+    db.session.commit()
+    print("Deleted {} stale birds".format(stale_birds))
+    import_birds.populate_the_database()
+
+    return 'This route fetches fresh bird data from outside source'
 
 
 def get_a_bird(bird):

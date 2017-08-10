@@ -22,25 +22,30 @@ def get_csv(url):
     return local_bird_storage
 
 def process_csv(bird_storage):
-    # Consider using yield here instead of return; it creates an iterable  
+    # Consider using yield here instead of return; it creates an iterable
+    # TODO made this method only process the CSV, and make another method 
+    # talk to the database.
+    # TODO turn "Caprimulgidae (Nightjars and Allies)" into
+    # order_name = Caprimulgidae and spuh = Nightjars and Allies
     first_line = True
     with open(bird_storage, 'rU', encoding='mac_latin2') as bird_csv:
         bird_reader = csv.reader(bird_csv)
         while True:
             try:
                 if first_line:
+                    # skip the first row, which is headers
                     first_line = False
                     continue
                 else:
                     bird_data = bird_reader.__next__()
-
                     if bird_data[1] == 'species':
+                        # only load species data
                         new_bird = Bird(
                             common_name = bird_data[3],
                             species_name = bird_data[5].split()[1],
                             genus_name = bird_data[5].split()[0],
-                            family_name = bird_data[6],
-                            order_name = bird_data[7],
+                            family_name = bird_data[7],
+                            order_name = bird_data[6],
                             spuh = bird_data[8]
                             )
                         db.session.add(new_bird)
@@ -56,5 +61,5 @@ def process_csv(bird_storage):
 
     
 
-
-process_csv(get_csv(ebird_url))
+def populate_the_database():
+    process_csv(get_csv(ebird_url))
