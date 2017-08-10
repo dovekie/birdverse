@@ -1,6 +1,8 @@
 # birdverse: a universe of birds!
 
-An API for bird taxonomic data
+An API for bird taxonomic data.
+
+This module uses Python 3 (or anyway it will)
 
 TODO:
 

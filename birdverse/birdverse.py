@@ -10,7 +10,7 @@ db = SQLAlchemy(app)
 
 from models import Bird
 
-print 'Running with {}'.format(os.environ['APP_SETTINGS'])
+print('Running with {}'.format(os.environ['APP_SETTINGS']))
 
 @app.route('/')
 @app.route('/<bird>')
