@@ -14,10 +14,7 @@ from models import Bird
 print('Running with {}'.format(os.environ['APP_SETTINGS']))
 
 @app.route('/')
-@app.route('/<bird>')
-def default(bird=None):
-    if bird:
-        return get_a_bird(bird)
+def default():
     return 'Welcome to Birdverse'
 
 @app.route('/populate')
@@ -29,9 +26,13 @@ def populate_bird_data():
 
     return 'This route fetches fresh bird data from outside source'
 
+@app.route('/bird')
+def bird_query():
+    for key in request.args.keys():
+        return get_a_bird(key, request.args[key])
 
-def get_a_bird(bird):
-    return 'getting a bird: {}'.format(bird)
+def get_a_bird(taxon_level, bird):
+    return 'getting a bird: {} {}'.format(taxon_level, bird)
 
 if __name__ == '__main__':
     app.run()
