@@ -3,6 +3,7 @@ from flask import (Flask, request, session, g, redirect, url_for, abort,
     render_template, flash)
 from flask_sqlalchemy import SQLAlchemy
 import import_birds
+from taxon_levels import taxon_levels
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
@@ -32,6 +33,10 @@ def bird_query():
         return get_a_bird(key, request.args[key])
 
 def get_a_bird(taxon_level, bird):
+    if taxon_level in taxon_levels:
+        print('Valid taxon!')
+    else:
+        print('errr no.')
     return 'getting a bird: {} {}'.format(taxon_level, bird)
 
 if __name__ == '__main__':
