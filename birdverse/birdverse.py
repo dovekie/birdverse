@@ -34,9 +34,11 @@ def bird_query():
 
 def get_a_bird(taxon_level, bird):
     if taxon_level in taxon_levels:
-        print('Valid taxon!')
-        birds = Bird.query.filter_by({taxon_level: bird})
-        print(birds)
+        print('Valid taxon! {} {}'.format(taxon_level, bird))
+        kwargs = {taxon_level: bird}
+        birds = Bird.query.filter_by(**kwargs).all()
+        for this_bird in birds:
+            print(this_bird.species_name)
     else:
         print('errr no.')
     return 'getting a bird: {} {}'.format(taxon_level, bird)
