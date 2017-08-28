@@ -2,12 +2,12 @@
 
 An API for bird taxonomic data.
 
-This module uses Python 3 (or anyway it will)
+This module uses Python 3
 
 TODO:
 
 - Clean up imports of DB methods to centralize DB code
 
-- Sanitize DB inputs because unicode breaks things
+- Write tests for new routes
 
-- Make bird data available via API
+- Add a proper logger

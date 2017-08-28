@@ -35,14 +35,15 @@ def bird_query():
 
 def get_a_bird(taxon_level, bird):
     if taxon_level in taxon_levels:
-        print('Valid taxon! {} {}'.format(taxon_level, bird))
+        print('Searching for {}: {}'.format(taxon_level, bird))
         kwargs = {taxon_level: bird}
         birds = Bird.query.filter_by(**kwargs).all()
         formatted_birds = create_dto(birds)
         for this_bird in formatted_birds:
             print(this_bird)
     else:
-        print('errr no.')
+        print('request made with invalid taxon level: {}'.format(taxon_level))
+        abort(400, 'errors: taxon_level: invalid taxon')
     return 'getting a bird: {} {}'.format(taxon_level, bird)
 
 if __name__ == '__main__':
