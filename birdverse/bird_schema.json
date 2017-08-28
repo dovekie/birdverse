@@ -1,0 +1,16 @@
+{
+  "definitions": {
+    "bird": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer" },
+        "common_name": { "type": "string" },
+        "species_name": { "type": "string" },
+        "genus_name": { "type": "string" },
+        "order_name": { "type": "string" },
+        "spuh": { "type": "string" }
+      },
+      "required": ["id", "species_name", "genus_name"]
+    }
+  }
+}
