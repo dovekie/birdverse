@@ -4,6 +4,7 @@ from flask import (Flask, request, session, g, redirect, url_for, abort,
 from flask_sqlalchemy import SQLAlchemy
 import import_birds
 from taxon_levels import taxon_levels
+from formatter import create_dto
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
@@ -37,8 +38,9 @@ def get_a_bird(taxon_level, bird):
         print('Valid taxon! {} {}'.format(taxon_level, bird))
         kwargs = {taxon_level: bird}
         birds = Bird.query.filter_by(**kwargs).all()
-        for this_bird in birds:
-            print(this_bird.species_name)
+        formatted_birds = create_dto(birds)
+        for this_bird in formatted_birds:
+            print(this_bird)
     else:
         print('errr no.')
     return 'getting a bird: {} {}'.format(taxon_level, bird)
