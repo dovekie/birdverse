@@ -1,6 +1,7 @@
 import csv
 import re
 import requests
+import predict_bird_url
 from flask_sqlalchemy import SQLAlchemy
 from birdverse import app
 
@@ -10,8 +11,7 @@ match_spuh = re.compile('\(.+\)')
 
 from models import Bird
 
-ebird_url = ('http://help.ebird.org/customer/portal/'
-             'kb_article_attachments/119673/original.csv?1503074146')
+ebird_url = predict_bird_url.find_url()
 local_bird_storage = 'birdverse/temp/raw_bird_data.csv'
 
 def get_csv(url):
